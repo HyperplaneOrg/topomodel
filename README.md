@@ -22,10 +22,13 @@ Upper left (x,y)
     +-------------------------------+----------------+
                                               lower right (x,y)
 ```
-Note that this tool is used for automating the surface generation process over
-an arbitrary x,y,z,m large set.
+Where nx = the number of columns or samples and ny = the number of rows or lines. 
+The grids must run parallel to each other as no "projection" ever takes palce. 
 
 See the topomodel man pages for more information.
 
-## References:
+Note that this tool is used for automating the surface generation process over an arbitrary large x,y,z,m set.
+
+
+### References:
 Horn, B.K.P., 1981. Hill shading and the reflectance map. Proc. Inst. Electric. Electron. Eng. 69, 14–47.
