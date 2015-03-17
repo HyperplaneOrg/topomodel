@@ -1,0 +1,98 @@
+.TH topomodel 1 "March, 2015"
+
+.SH NAME:
+topomodel \- A Topographic Modeling Utility
+
+.SH SYNOPSIS:
+.B topomodel
+[
+.B OPTIONS
+] -x <file> -y <file> -z <file> -m <file> -d <lines,samples> -s <file> -a <file>
+
+.SH DESCRIPTION
+topomodel is a simple tool that generates a surface slope and aspect from a set of 
+x, y, z floating point binary grids and a byte input mask. The gradients are computed 
+via 3rd order finite difference weighted by the reciprocal of the squared distance.
+The kernel = standard 3, and the slope output is degrees from horizontal, the aspect 
+output is degrees from the north, e.g. n=>0|360, e=>90, s=>180, w=>270.
+
+For the purposes of this program a grid is defined as:
+.nf
+
+Upper left (x,y)
+    +-------------+----------------------------------+
+    | element 0,0 | .  .  .  .  .  .  .  .  .  .  .  |
+    +-------------+                                  |
+    |     .                                          |
+    |     .                                          |
+    |     .                                          |
+    |     .                         +----------------|
+    |     .                         | element nx, ny |
+    +-------------------------------+----------------+
+                                              lower right (x,y)
+.fi
+
+.P
+where nx = the number of columns or samples and ny = the number of rows or lines. 
+The grids must run parallel to each other as no "projection" ever takes palce. 
+
+.P
+Note that this tool is used for automating the surface generation process over
+an arbitrary x,y,z,m large set.
+
+.SH OPTIONS
+.TP 
+.B -x, --xgrid <file> 
+The floating point grid containing the x plane coordinates.
+
+.TP
+.B -y, --ygrid <file> 
+The floating point grid containing the y plane coordinates.
+
+.TP 
+.B -z, --zgrid <file> 
+The floating point grid containing the z plane coordinates. 
+The units of this grid should be in meters.
+
+.TP
+All above grids should be IEEE float, sizeof(DATATYPE)*8 bits - see configure. Note that 
+the x and y planes should not be masked, or should contain at least two cells outside the 
+mask border(s) when possible. 
+
+.TP 
+.B -m, --mask <file> 
+The byte mask grid containing the mask values with 0 => exclude and 1 => include.
+The sizeof(char)*8
+
+.TP 
+.B -d, --dims <lines,samples> 
+The dimensions of the grid. All grids should have the same dimensions
+
+.TP 
+.B -s, --slope <file> 
+Output slope grid name
+
+.TP
+.B -a, --aspect <file>
+Output aspect grid name
+
+.TP 
+.B -e, --earths-rad <value>
+The mean radius of the spherical earth (meters). If this parameter is set then: x=>lon, 
+y=lat; units should be decimal degrees.
+
+.TP 
+.B -h, --help 
+The terse help message.
+
+.TP 
+.B -v, --verbose 
+Run the program in verbose mode.
+
+.SH REFERENCES
+Horn, B.K.P., 1981. Hill shading and the reflectance map. Proc. Inst. Electric. Electron. Eng. 69, 14–47.
+
+.SH BUGS:
+Mail bugs to Andrew Michaelis (amac@hyperplane.org)
+
+
