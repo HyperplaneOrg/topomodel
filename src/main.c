@@ -69,7 +69,7 @@ static void print_usage()
 	fprintf(stdout, "          this parameter is set then: x=>lon, y=lat; units should be decimal degrees.\n");
 	fprintf(stdout, "   -h | --help :: This help message.\n");
 	fprintf(stdout, "   -v | --verbose :: Run in verbose mode.\n");
-	fprintf(stdout, "   See the manpages for more information.\n")
+	fprintf(stdout, "   See the manpages for more information.\n");
 	fprintf(stdout, "   Author: Andrew Michaelis, amac at hyperplane dot org\n");
 	fprintf(stdout, "\n");
 }/* print_usage */
