@@ -55,23 +55,23 @@ static const char* SRC_FILE = __FILE__;
 */
 static void print_usage()
 {
-	fprintf(stdout, "\n   Usage: %s [ OPTIONS ] -x <file> -y <file> -z <file> -m <file> -d <lines,samples> -s <file> -a <file>\n\n", PROGNAME);
-	fprintf(stdout, "   -x | --xgrid <file> :: Grid containing the x plane info.\n");
-	fprintf(stdout, "   -y | --ygrid <file> :: Grid containing the y plane info.\n");
-	fprintf(stdout, "   -z | --zgrid <file> :: Grid containing the z plane info. Units are meters\n");
-	fprintf(stdout, "   All above grids should be IEEE float(%zu). Note that the x and y planes should not be masked\n", sizeof(DATATYPE)*8);
-	fprintf(stdout, "   or should contain at least two cells outside the mask border. It's ok for the z grid to be masked.\n");
-	fprintf(stdout, "   -m | --mask <file> :: Mask grid. Values: 0=>exclude,1=>include, %zu bit integers\n", sizeof(char)*8);
-	fprintf(stdout, "   -d | --dims <lines,samples> :: The dimensions of the grid\n");
-	fprintf(stdout, "   -s | --slope <file> :: Output slope grid name\n");
-	fprintf(stdout, "   -a | --aspect <file> :: Output aspect grid name\n");
-	fprintf(stdout, "   -e |--earths-rad <value>:: The mean radius of the spherical earth (meters). If\n");
-	fprintf(stdout, "          this parameter is set then: x=>lon, y=lat; units should be decimal degrees.\n");
-	fprintf(stdout, "   -h | --help :: This help message.\n");
-	fprintf(stdout, "   -v | --verbose :: Run in verbose mode.\n");
-	fprintf(stdout, "   See the manpages for more information.\n");
-	fprintf(stdout, "   Author: Andrew Michaelis, amac at hyperplane dot org\n");
-	fprintf(stdout, "\n");
+   fprintf(stdout, "\n   Usage: %s [ OPTIONS ] -x <file> -y <file> -z <file> -m <file> -d <lines,samples> -s <file> -a <file>\n\n", PROGNAME);
+   fprintf(stdout, "   -x | --xgrid <file> :: Grid containing the x plane info.\n");
+   fprintf(stdout, "   -y | --ygrid <file> :: Grid containing the y plane info.\n");
+   fprintf(stdout, "   -z | --zgrid <file> :: Grid containing the z plane info. Units are meters\n");
+   fprintf(stdout, "   All above grids should be IEEE float(%zu). Note that the x and y planes should not be masked\n", sizeof(DATATYPE)*8);
+   fprintf(stdout, "   or should contain at least two cells outside the mask border. It's ok for the z grid to be masked.\n");
+   fprintf(stdout, "   -m | --mask <file> :: Mask grid. Values: 0=>exclude,1=>include, %zu bit integers\n", sizeof(char)*8);
+   fprintf(stdout, "   -d | --dims <lines,samples> :: The dimensions of the grid\n");
+   fprintf(stdout, "   -s | --slope <file> :: Output slope grid name\n");
+   fprintf(stdout, "   -a | --aspect <file> :: Output aspect grid name\n");
+   fprintf(stdout, "   -e |--earths-rad <value>:: The mean radius of the spherical earth (meters). If\n");
+   fprintf(stdout, "          this parameter is set then: x=>lon, y=lat; units should be decimal degrees.\n");
+   fprintf(stdout, "   -h | --help :: This help message.\n");
+   fprintf(stdout, "   -v | --verbose :: Run in verbose mode.\n");
+   fprintf(stdout, "   See the manpages for more information.\n");
+   fprintf(stdout, "   Author: Andrew Michaelis, amac at hyperplane dot org\n");
+   fprintf(stdout, "\n");
 }/* print_usage */
 
 /*------------------------------------------------------------------------------
@@ -135,7 +135,6 @@ void* mmapfile(const char* fname, int proto, size_t bytes)
          close(fd);
          return NULL;
       }
-      /* is this nescessary? */
       if( lseek(fd, (off_t)0 , SEEK_SET ) < 0)
       {
          fprintf(stderr, "%s @ %d : lseek %s : %s\n", SRC_FILE, __LINE__, fname, strerror(errno));
@@ -216,8 +215,8 @@ int main(int argc, char** argv)
          case 0:
             if(option_index == 0)
             {
-				   print_usage();
-				   exit(0);
+   			   print_usage();
+   			   exit(0);
             }
             else if(option_index == 1)
                verbose += 1;
@@ -241,40 +240,40 @@ int main(int argc, char** argv)
             else if(option_index == 9)
                earthsurad = atof(optarg);
             break;
-			case 'v':
+   		case 'v':
             verbose += 1;
-				break;
-			case 'x':
+   			break;
+   		case 'x':
             xgridnm = optarg;
-				break;
-			case 'y':
+   			break;
+   		case 'y':
             ygridnm = optarg;
-				break;
-			case 'z':
+   			break;
+   		case 'z':
             zgridnm = optarg;
-				break;
-			case 'm':
+   			break;
+   		case 'm':
             masknm = optarg;
-				break;
-			case 's':
+   			break;
+   		case 's':
             slopenm = optarg;
             break;
-			case 'e':
+   		case 'e':
             earthsurad = atof(optarg);
             break;
-			case 'a':
+   		case 'a':
             aspectnm = optarg;
             break;
-			case 'd':
+   		case 'd':
             strncpy(dimargs, optarg, 31);
             parse_arg_commas(dimargs, &lines, &samples, NULL);
-				break;
-			case 'h':
-			   print_usage();
-			   exit(0);
+   			break;
+   		case 'h':
+   		   print_usage();
+   		   exit(0);
          default:
             fprintf(stderr, "Try -h for help.\n");
-			   exit(0);
+   		   exit(0);
       }
    }
 
@@ -324,7 +323,7 @@ int main(int argc, char** argv)
 
    status = slope_aspect(xgridb, ygridb, zgridb, mask, sgridb, agridb, lines, samples, earthsurad);
 
-   /* done so clean up */
+   /* done some clean up */
    
    if( munmapfile(xgridb, lines*samples*sizeof(DATATYPE), xgridnm) < 0)
       exit(1);
