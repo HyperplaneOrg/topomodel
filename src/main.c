@@ -215,8 +215,8 @@ int main(int argc, char** argv)
          case 0:
             if(option_index == 0)
             {
-   			   print_usage();
-   			   exit(0);
+               print_usage();
+               exit(0);
             }
             else if(option_index == 1)
                verbose += 1;
@@ -240,40 +240,40 @@ int main(int argc, char** argv)
             else if(option_index == 9)
                earthsurad = atof(optarg);
             break;
-   		case 'v':
+         case 'v':
             verbose += 1;
-   			break;
-   		case 'x':
+            break;
+         case 'x':
             xgridnm = optarg;
-   			break;
-   		case 'y':
+            break;
+         case 'y':
             ygridnm = optarg;
-   			break;
-   		case 'z':
+            break;
+         case 'z':
             zgridnm = optarg;
-   			break;
-   		case 'm':
+            break;
+         case 'm':
             masknm = optarg;
-   			break;
-   		case 's':
+            break;
+         case 's':
             slopenm = optarg;
             break;
-   		case 'e':
+         case 'e':
             earthsurad = atof(optarg);
             break;
-   		case 'a':
+         case 'a':
             aspectnm = optarg;
             break;
-   		case 'd':
+         case 'd':
             strncpy(dimargs, optarg, 31);
             parse_arg_commas(dimargs, &lines, &samples, NULL);
-   			break;
-   		case 'h':
-   		   print_usage();
-   		   exit(0);
+            break;
+         case 'h':
+            print_usage();
+            exit(0);
          default:
             fprintf(stderr, "Try -h for help.\n");
-   		   exit(0);
+            exit(0);
       }
    }
 
