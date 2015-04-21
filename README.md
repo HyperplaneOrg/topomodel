@@ -17,9 +17,9 @@ Upper left (x,y)
     |     .                                          |   
     |     .                                          |   
     |     .                                          |   
-    |     .                         +----------------|
-    |     .                         | element nx, ny |
-    +-------------------------------+----------------+
+    |     .                     +--------------------|
+    |     .                     | element nx-1, ny-1 |
+    +---------------------------+--------------------+
                                               lower right (x,y)
 ```
 Where nx = the number of columns or samples and ny = the number of rows or lines. 
