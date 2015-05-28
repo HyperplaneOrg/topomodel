@@ -27,7 +27,7 @@ The grids must run parallel to each other as no "projection" ever takes palce.
 
 See the topomodel man pages for more information.
 
-Note that this tool is used for automating the surface generation process over an arbitrary large x,y,z,m set.
+Note, this tool is used for automating the process of generating the slope and aspect over a large set of x,y,z,m grids.
 
 
 ### References:
